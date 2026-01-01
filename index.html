@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elon Stocks | $ELON</title>
+    <link rel="icon" href="https://wkkeyyrknmnynlcefugq.supabase.co/storage/v1/object/public/wasd/logo%20-%202026-01-01T210947.379.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --pigger-white: #fafafa;
+        --pigger-charcoal: #050505;
+        --pigger-accent: #ffffff;
+      }
+      body {
+        background-color: var(--pigger-charcoal);
+        color: var(--pigger-white);
+        font-family: 'Patrick Hand', cursive;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        font-size: 1.2rem;
+      }
+      .font-marker { font-family: 'Permanent Marker', cursive; }
+      .font-hand { font-family: 'Patrick Hand', cursive; }
+      
+      .soft-glass {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .gradient-text {
+        background: linear-gradient(to bottom right, #ffffff 30%, rgba(255,255,255,0.6) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .btn-pigger {
+        position: relative;
+        background: white;
+        color: black;
+        border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+        transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border: 2px solid transparent;
+      }
+      .btn-pigger:hover {
+        transform: scale(1.02) rotate(-1deg);
+        box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+      }
+
+      @keyframes float-pigger {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        33% { transform: translateY(-15px) rotate(2deg); }
+        66% { transform: translateY(-5px) rotate(-1deg); }
+      }
+      .animate-float {
+        animation: float-pigger 8s ease-in-out infinite;
+      }
+      
+      .noise {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: url('https://grainy-gradients.vercel.app/noise.svg');
+        opacity: 0.05;
+        pointer-events: none;
+        z-index: 50;
+      }
+
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #050505; }
+      ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; border: 1px solid #000; }
+      
+      section { position: relative; z-index: 10; }
+      
+      .scribble-underline {
+        position: relative;
+        display: inline-block;
+      }
+      .scribble-underline::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 100%;
+        height: 2px;
+        background: white;
+        transform: rotate(-1deg);
+        border-radius: 100%;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "framer-motion": "https://esm.sh/framer-motion@^12.23.26",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "vite": "https://esm.sh/vite@^7.3.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
+  }
+}
+</script>
+</head>
+  <body>
+    <div class="noise"></div>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

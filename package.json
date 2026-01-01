@@ -1,0 +1,25 @@
+
+{
+  "name": "wigger-pig-app",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "framer-motion": "11.11.17",
+    "@google/genai": "1.3.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.11",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@types/react": "18.3.1",
+    "@types/react-dom": "18.3.1",
+    "typescript": "^5.6.3"
+  }
+}

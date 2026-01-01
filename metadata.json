@@ -1,0 +1,8 @@
+{
+  "name": "elon stocks",
+  "description": "The wildest memecoin on Solana. Features an AI-powered meme generator, real-time exchange tracking, and community links for $pigger.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
