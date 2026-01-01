@@ -350,6 +350,7 @@ const MemeGenerator = () => {
   const [selectedPreset, setSelectedPreset] = useState(stylePresets[0].id);
   const [isGenerating, setIsGenerating] = useState(false);
   const [activeImage, setActiveImage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [loadingStage, setLoadingStage] = useState(0);
   const stages = ["ANALYZING TWEETS...", "DODGING SEC...", "PUMPING STOCK...", "MEME PRINTED."];
 
@@ -366,46 +367,66 @@ const MemeGenerator = () => {
   const generateMeme = async () => {
     if (!prompt.trim() || isGenerating) return;
     setIsGenerating(true);
+    setErrorMessage(null);
+    
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       
-      const logoRes = await fetch(LOGO_IMG);
-      const blob = await logoRes.blob();
-      const base64Data = await new Promise<string>((res) => {
-        const reader = new FileReader();
-        reader.onloadend = () => res((reader.result as string).split(',')[1]);
-        reader.readAsDataURL(blob);
-      });
+      let base64Data: string | null = null;
+      try {
+        const logoRes = await fetch(LOGO_IMG);
+        if (logoRes.ok) {
+           const blob = await logoRes.blob();
+           base64Data = await new Promise<string>((res) => {
+            const reader = new FileReader();
+            reader.onloadend = () => res((reader.result as string).split(',')[1]);
+            reader.readAsDataURL(blob);
+          });
+        }
+      } catch (err) {
+        console.warn("Logo fetch failed due to CORS or network error, generating without logo reference", err);
+      }
 
       const preset = stylePresets.find(p => p.id === selectedPreset);
       const fullPrompt = `Create a high-quality, funny meme image. 
       Subject: Elon Musk or a character representing Elon Stocks ($ELON).
       Context: ${prompt}.
       Style: ${preset?.prompt}.
-      Use the provided image as a visual reference for the logo/branding vibe, but feel free to be creative with the character. 
+      ${base64Data ? 'Use the provided image as a visual reference for the logo/branding vibe.' : 'Include the text "$ELON" subtly in the image.'}
       Make it look like a viral crypto meme.`;
+
+      const parts: any[] = [];
+      if (base64Data) {
+         parts.push({ inlineData: { data: base64Data, mimeType: 'image/png' } });
+      }
+      parts.push({ text: fullPrompt });
 
       const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash-image',
         contents: {
-          parts: [
-            { inlineData: { data: base64Data, mimeType: 'image/png' } },
-            { text: fullPrompt }
-          ]
+          parts: parts
         },
         config: { imageConfig: { aspectRatio: "1:1" } }
       });
 
+      let foundImage = false;
       if (response.candidates && response.candidates[0] && response.candidates[0].content && response.candidates[0].content.parts) {
         for (const part of response.candidates[0].content.parts) {
           if (part.inlineData) {
             setActiveImage(`data:image/png;base64,${part.inlineData.data}`);
+            foundImage = true;
             break;
           }
         }
       }
-    } catch (e) { 
+      
+      if (!foundImage) {
+        throw new Error("AI did not return an image. Try a different prompt.");
+      }
+
+    } catch (e: any) { 
       console.error("Meme Gen Error:", e);
+      setErrorMessage(e.message || "Failed to generate meme. Please try again.");
     } finally { 
       setIsGenerating(false); 
     }
@@ -440,6 +461,13 @@ const MemeGenerator = () => {
                 ))}
               </div>
             </div>
+            
+            {errorMessage && (
+              <div className="p-4 rounded-xl bg-red-500/20 border border-red-500/50 text-red-200 font-hand text-lg">
+                ⚠️ {errorMessage}
+              </div>
+            )}
+
             <button onClick={generateMeme} disabled={isGenerating || !prompt} className="w-full btn-pigger py-5 font-marker text-xl uppercase disabled:opacity-50 disabled:cursor-not-allowed transform active:scale-95">{isGenerating ? 'COOKING...' : 'GENERATE'}</button>
           </div>
           
