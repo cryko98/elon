@@ -31,40 +31,91 @@ const randomScenarios = [
 
 const StockBackground = () => {
   return (
-    <div className="fixed inset-0 -z-20 overflow-hidden opacity-20 pointer-events-none">
-      {/* Green Uptrend Lines */}
-      <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
+    <div className="fixed inset-0 -z-20 overflow-hidden bg-[#050505] pointer-events-none">
+      {/* Grid Pattern Background */}
+      <div 
+        className="absolute inset-0 opacity-[0.03]" 
+        style={{ 
+          backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', 
+          backgroundSize: '40px 40px' 
+        }} 
+      />
+
+      {/* Animated Ticker Tape Top */}
+      <div className="absolute top-20 left-0 right-0 opacity-[0.04] -rotate-2 scale-110 overflow-hidden">
+        <motion.div 
+          className="whitespace-nowrap font-marker text-9xl text-green-500"
+          animate={{ x: [0, -2000] }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        >
+           $ELON +420% 🚀 $ELON +690% 📈 $ELON MOONING 🐂 $ELON +420% 🚀 $ELON +690% 📈 $ELON MOONING 🐂
+        </motion.div>
+      </div>
+
+      {/* Animated Ticker Tape Bottom */}
+      <div className="absolute bottom-40 left-0 right-0 opacity-[0.04] rotate-1 scale-110 overflow-hidden">
+        <motion.div 
+          className="whitespace-nowrap font-marker text-8xl text-white"
+          animate={{ x: [-2000, 0] }}
+          transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+        >
+           STOCK MARKET CORRECT CORRECT CORRECT WEALTH GENERATION CORRECT CORRECT
+        </motion.div>
+      </div>
+
+      {/* Floating Stock Elements */}
+      {[...Array(15)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute text-green-500/20 font-marker text-4xl"
+          style={{ 
+            left: `${Math.random() * 100}%`,
+          }}
+          initial={{ 
+            y: "110vh",
+            opacity: 0 
+          }}
+          animate={{ 
+            y: "-10vh", 
+            opacity: [0, 0.4, 0],
+            rotate: [0, Math.random() * 20 - 10]
+          }}
+          transition={{ 
+            duration: Math.random() * 15 + 10, 
+            repeat: Infinity, 
+            delay: Math.random() * 10,
+            ease: "linear"
+          }}
+        >
+          {['📈', '🚀', '💰', '🐂', 'BUY', 'HODL', '$ELON'][i % 7]}
+        </motion.div>
+      ))}
+
+      {/* Enhanced Chart Lines */}
+      <svg className="absolute w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="line-gradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#22c55e" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#22c55e" stopOpacity="0" />
+          </linearGradient>
+        </defs>
         <motion.path
-          d="M0 500 Q 150 450, 300 300 T 600 200 T 900 100 T 1200 50"
-          fill="none"
-          stroke="rgba(0, 255, 0, 0.3)"
-          strokeWidth="4"
+          d="M0 800 Q 300 700, 600 500 T 1200 300 T 1800 100 L 1800 1000 L 0 1000 Z"
+          fill="url(#line-gradient)"
           initial={{ pathLength: 0, opacity: 0 }}
           animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 5, repeat: Infinity, ease: "linear", repeatType: "loop" }}
+          transition={{ duration: 3, ease: "easeOut" }}
         />
         <motion.path
-          d="M-100 600 Q 100 500, 400 350 T 800 250 T 1300 50"
+          d="M0 800 Q 300 700, 600 500 T 1200 300 T 1800 100"
           fill="none"
-          stroke="rgba(0, 255, 0, 0.2)"
-          strokeWidth="2"
+          stroke="#22c55e"
+          strokeWidth="3"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
-          transition={{ duration: 7, repeat: Infinity, ease: "linear", repeatType: "loop", delay: 1 }}
+          transition={{ duration: 3, ease: "easeOut" }}
         />
       </svg>
-      {/* Candles simulated */}
-      <div className="absolute bottom-0 left-0 w-full h-1/3 flex items-end justify-around opacity-30">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="w-4 bg-green-500/50"
-            initial={{ height: "10%" }}
-            animate={{ height: ["10%", `${Math.random() * 80 + 20}%`, "10%"] }}
-            transition={{ duration: Math.random() * 3 + 2, repeat: Infinity, ease: "easeInOut" }}
-          />
-        ))}
-      </div>
     </div>
   );
 };
