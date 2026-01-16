@@ -151,7 +151,7 @@ const Navbar = () => {
       <div className="max-w-6xl mx-auto flex items-center justify-between soft-glass rounded-[2rem] px-6 py-3 pointer-events-auto relative bg-black/60">
         <div className="flex items-center gap-3">
           <img src={LOGO_IMG} alt="Logo" className="w-10 h-10 rounded-full border border-white/20 object-cover" />
-          <span className="font-marker text-xl tracking-wide">$PUMPBAG</span>
+          <span className="font-marker text-xl tracking-wide">$pumpbags</span>
         </div>
         
         {/* Desktop Menu */}
@@ -257,7 +257,7 @@ const About = () => (
 
           <div className="space-y-6 text-white/80 font-hand text-xl md:text-3xl leading-relaxed max-w-4xl mx-auto mb-10">
             <p>Bag coins are trending hard right now, but everyone knows the absolute <span className="text-green-400 font-bold">BEST</span> bags are found on <a href="https://pump.fun" className="underline decoration-wavy decoration-green-500">pump.fun</a>.</p>
-            <p>That's why <span className="font-marker text-white">$PUMPBAG</span> is here.</p>
+            <p>That's why <span className="font-marker text-white">$pumpbags</span> is here.</p>
             <p className="text-2xl md:text-4xl font-marker mt-8 transform -rotate-1">"Pump my bag."</p>
           </div>
           
@@ -277,7 +277,7 @@ const HowToBuy = () => {
     { title: "Create Wallet", desc: "Download Phantom or Solflare wallet from the app store." },
     { title: "Get SOL", desc: "Buy SOL on an exchange (Binance, Coinbase) and send to wallet." },
     { title: "Go to Pump.fun", desc: "Connect your wallet to pump.fun." },
-    { title: "Swap for $PUMPBAG", desc: `Paste the CA: ${CA_ADDRESS} and swap.` }
+    { title: "Swap for $pumpbags", desc: `Paste the CA: ${CA_ADDRESS} and swap.` }
   ];
 
   return (
@@ -381,7 +381,7 @@ const App: React.FC = () => {
         </main>
         <footer className="py-12 border-t border-white/10 text-center bg-black">
           <div className="max-w-6xl mx-auto px-6">
-            <p className="text-white/30 font-hand text-lg uppercase">$PUMPBAG 2026 • PUMP IT.</p>
+            <p className="text-white/30 font-hand text-lg uppercase">$pumpbags 2026 • PUMP IT.</p>
           </div>
         </footer>
       </motion.div>
