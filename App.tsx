@@ -1,32 +1,13 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { GoogleGenAI } from "@google/genai";
 
 // --- KONSTANSOK ---
-const LOGO_IMG = "https://wkkeyyrknmnynlcefugq.supabase.co/storage/v1/object/public/wasd/logo%20-%202026-01-01T210947.379.png";
-// MEME_REF_IMG törölve, mivel már nem használjuk automatikusan
-const CA_ADDRESS = "HmDkJvms7igTe8MCmQA2dYNSZzRJtSRJZcDdPU12pump";
-const COMMUNITY_URL = "https://x.com/i/communities/2006115824877162674";
-const TWEET_URL = "https://twitter.com/elonmusk/status/2006014310607167607";
-
-const stylePresets = [
-  { id: 'sketch', label: 'SKETCH', prompt: 'pencil sketch style, hand drawn, doodle art, white lines on black background' },
-  { id: 'realistic', label: 'REALISTIC', prompt: 'photorealistic, cinematic, 8k, highly detailed, dramatic lighting' },
-  { id: 'meme', label: 'MEME ART', prompt: 'classic meme style, bold impact font, internet culture aesthetic, funny' },
-  { id: 'cyber', label: 'CYBER', prompt: 'futuristic, neon lights, tech interface, matrix code overlay' },
-  { id: 'oil', label: 'OIL PAINT', prompt: 'oil painting style, textured brush strokes, classical art vibe' }
-];
-
-const randomScenarios = [
-  "panic selling at the bottom of a huge red candle",
-  "riding a giant green bullish candle to mars",
-  "fighting a bear market grizzly in a business suit",
-  "swimming in a pool of dividends and gold coins",
-  "yelling 'HODL' at a crashing stock chart on a laptop",
-  "analyzing a technical chart that just says 'UP ONLY'",
-  "buying the dip while the entire stock market burns behind him"
-];
+const LOGO_IMG = "https://wkkeyyrknmnynlcefugq.supabase.co/storage/v1/object/public/neww/logo%20-%202026-01-16T171903.386.png";
+const BANNER_IMG = "https://wkkeyyrknmnynlcefugq.supabase.co/storage/v1/object/public/neww/banner%20-%202026-01-16T173326.533.png";
+const CA_ADDRESS = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+const COMMUNITY_URL = "https://x.com";
+const SLOGAN = "Pump my bag";
 
 // --- KOMPONENSEK ---
 
@@ -49,7 +30,7 @@ const StockBackground = () => {
           animate={{ x: [0, -2000] }}
           transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
         >
-           $ELON +420% 🚀 $ELON +690% 📈 $ELON MOONING 🐂 $ELON +420% 🚀 $ELON +690% 📈 $ELON MOONING 🐂
+           $PUMPBAG 🚀 $PUMPBAG 📈 PUMP MY BAG 🐂 $PUMPBAG 🚀 $PUMPBAG 📈 PUMP MY BAG 🐂
         </motion.div>
       </div>
 
@@ -60,15 +41,17 @@ const StockBackground = () => {
           animate={{ x: [-2000, 0] }}
           transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
         >
-           STOCK MARKET CORRECT CORRECT CORRECT WEALTH GENERATION CORRECT CORRECT
+           FILL YOUR BAGS CORRECT CORRECT PUMP.FUN CORRECT CORRECT
         </motion.div>
       </div>
 
-      {/* Floating Stock Elements */}
-      {[...Array(15)].map((_, i) => (
-        <motion.div
+      {/* Floating Logo Elements */}
+      {[...Array(20)].map((_, i) => (
+        <motion.img
           key={i}
-          className="absolute text-green-500/20 font-marker text-4xl"
+          src={LOGO_IMG}
+          alt="Floating Logo"
+          className="absolute w-12 h-12 md:w-16 md:h-16 opacity-10 rounded-full grayscale"
           style={{ 
             left: `${Math.random() * 100}%`,
           }}
@@ -78,18 +61,16 @@ const StockBackground = () => {
           }}
           animate={{ 
             y: "-10vh", 
-            opacity: [0, 0.4, 0],
-            rotate: [0, Math.random() * 20 - 10]
+            opacity: [0, 0.2, 0],
+            rotate: [0, Math.random() * 360]
           }}
           transition={{ 
-            duration: Math.random() * 15 + 10, 
+            duration: Math.random() * 20 + 15, 
             repeat: Infinity, 
             delay: Math.random() * 10,
             ease: "linear"
           }}
-        >
-          {['📈', '🚀', '💰', '🐂', 'BUY', 'HODL', '$ELON'][i % 7]}
-        </motion.div>
+        />
       ))}
 
       {/* Enhanced Chart Lines */}
@@ -127,7 +108,7 @@ const Navbar = () => {
     { name: 'THE STORY', href: '#story' },
     { name: 'HOW TO BUY', href: '#howtobuy' },
     { name: 'TOKENOMICS', href: '#tokenomics' },
-    { name: 'MEME GEN', href: '#ai' }
+    { name: 'CHART', href: '#chart' }
   ];
 
   return (
@@ -140,7 +121,7 @@ const Navbar = () => {
       <div className="max-w-6xl mx-auto flex items-center justify-between soft-glass rounded-[2rem] px-6 py-3 pointer-events-auto relative bg-black/60">
         <div className="flex items-center gap-3">
           <img src={LOGO_IMG} alt="Logo" className="w-10 h-10 rounded-full border border-white/20 object-cover" />
-          <span className="font-marker text-xl tracking-wide">$ELON</span>
+          <span className="font-marker text-xl tracking-wide">$PUMPBAG</span>
         </div>
         
         {/* Desktop Menu */}
@@ -202,7 +183,7 @@ const Hero = () => {
       <motion.div style={{ y: y1, opacity }} className="text-center w-full max-w-4xl">
         <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.2, ease: "easeOut" }} className="relative inline-block mb-8 md:mb-12">
           <div className="absolute inset-0 bg-white/10 blur-[80px] rounded-full" />
-          <img src={LOGO_IMG} alt="Elon Stocks" className="w-48 h-48 md:w-72 md:h-72 rounded-full border-4 border-white/10 relative z-10 animate-float shadow-2xl object-cover" />
+          <img src={LOGO_IMG} alt="Pump My Bag" className="w-48 h-48 md:w-72 md:h-72 rounded-full border-4 border-white/10 relative z-10 animate-float shadow-2xl object-cover" />
         </motion.div>
         <div className="relative">
           <motion.h1 
@@ -211,38 +192,18 @@ const Hero = () => {
             transition={{ delay: 0.2, duration: 0.8 }} 
             className="text-6xl sm:text-7xl md:text-[8rem] font-marker leading-[0.9] text-white uppercase transform -rotate-2"
           >
-            Elon Stocks
+            Pump my bag
           </motion.h1>
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="mt-6 md:mt-8 text-white/60 font-hand text-xl md:text-2xl tracking-widest font-bold uppercase px-4 scribble-underline">
-            "Correct." - Elon Musk
+            "Pump my bag."
           </motion.p>
         </div>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }} className="mt-12 md:mt-16 flex flex-col sm:flex-row justify-center gap-6 px-6">
           <a href="https://pump.fun" target="_blank" className="btn-pigger w-full sm:w-auto px-10 md:px-12 py-4 font-marker text-lg md:text-xl transform hover:-rotate-2">BUY ON PUMP.FUN</a>
-          <a href="#story" className="w-full sm:w-auto px-10 md:px-12 py-4 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] border-2 border-white/20 font-marker text-lg md:text-xl text-white/80 hover:text-white hover:bg-white/5 transition-all text-center transform hover:rotate-2">READ STORY</a>
+          <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(SLOGAN)}`} target="_blank" className="w-full sm:w-auto px-10 md:px-12 py-4 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] border-2 border-white/20 font-marker text-lg md:text-xl text-white/80 hover:text-white hover:bg-white/5 transition-all text-center transform hover:rotate-2">TWEET SLOGAN</a>
         </motion.div>
       </motion.div>
     </section>
-  );
-};
-
-// TweetEmbed Component using standard Twitter Widget JS
-const TweetEmbed = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Check if twitter widget script is loaded
-    if ((window as any).twttr) {
-      (window as any).twttr.widgets.load(containerRef.current);
-    }
-  }, []);
-
-  return (
-    <div className="flex justify-center w-full px-4" ref={containerRef}>
-      <blockquote className="twitter-tweet" data-theme="dark" data-align="center" data-conversation="none">
-        <a href={TWEET_URL}></a>
-      </blockquote>
-    </div>
   );
 };
 
@@ -251,17 +212,22 @@ const About = () => (
     <div className="max-w-5xl mx-auto">
       <div className="grid grid-cols-1 gap-12 items-center text-center">
         <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
-          <h2 className="text-4xl md:text-7xl font-marker mb-8 uppercase gradient-text transform -rotate-1">The Prophecy</h2>
-          <div className="space-y-6 text-white/80 font-hand text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto mb-10">
-            <p>It was a simple interaction, but it sparked a movement.</p>
-            <p>Solana founder Toly dropped a truth bomb: <span className="text-white font-bold underline decoration-wavy decoration-white/30">Stock gains represent nothing if they don't produce real value.</span></p>
-            <p>Elon's response? A single word that validated everything.</p>
+          <h2 className="text-4xl md:text-7xl font-marker mb-8 uppercase gradient-text transform -rotate-1">The Mission</h2>
+          
+          <div className="relative mb-12 rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl rotate-1 hover:rotate-0 transition-transform duration-700">
+             <img src={BANNER_IMG} alt="Pump my bag Banner" className="w-full object-cover" />
+          </div>
+
+          <div className="space-y-6 text-white/80 font-hand text-xl md:text-3xl leading-relaxed max-w-4xl mx-auto mb-10">
+            <p>Bag coins are trending hard right now, but everyone knows the absolute <span className="text-green-400 font-bold">BEST</span> bags are found on <a href="https://pump.fun" className="underline decoration-wavy decoration-green-500">pump.fun</a>.</p>
+            <p>That's why <span className="font-marker text-white">$PUMPBAG</span> is here.</p>
+            <p className="text-2xl md:text-4xl font-marker mt-8 transform -rotate-1">"Pump my bag."</p>
           </div>
           
-          <TweetEmbed />
-
           <div className="mt-12">
-            <p className="font-hand text-xl text-white/50">This is $ELON. Real community. Real production. Real memes.</p>
+            <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(SLOGAN)}`} target="_blank" className="btn-pigger px-8 py-3 font-marker text-lg uppercase">
+              TWEET THE SLOGAN
+            </a>
           </div>
         </motion.div>
       </div>
@@ -274,7 +240,7 @@ const HowToBuy = () => {
     { title: "Create Wallet", desc: "Download Phantom or Solflare wallet from the app store." },
     { title: "Get SOL", desc: "Buy SOL on an exchange (Binance, Coinbase) and send to wallet." },
     { title: "Go to Pump.fun", desc: "Connect your wallet to pump.fun." },
-    { title: "Swap for $ELON", desc: `Paste the CA: ${CA_ADDRESS} and swap.` }
+    { title: "Swap for $PUMPBAG", desc: `Paste the CA: ${CA_ADDRESS} and swap.` }
   ];
 
   return (
@@ -282,7 +248,7 @@ const HowToBuy = () => {
       <div className="max-w-6xl mx-auto">
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-16">
           <h2 className="text-4xl md:text-7xl font-marker uppercase transform rotate-1 text-white">How To Buy</h2>
-          <p className="font-hand text-xl mt-4 text-white/50">Join the revolution in 4 scribbly steps</p>
+          <p className="font-hand text-xl mt-4 text-white/50">Fill your bags in 4 scribbly steps</p>
         </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
@@ -346,244 +312,36 @@ const Tokenomics = () => {
   );
 };
 
-const MemeGenerator = () => {
-  const [prompt, setPrompt] = useState("");
-  const [selectedPreset, setSelectedPreset] = useState(stylePresets[0].id);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [activeImage, setActiveImage] = useState<string | null>(null);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [loadingStage, setLoadingStage] = useState(0);
-  const [uploadedImageSrc, setUploadedImageSrc] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  
-  const stages = ["ANALYZING CHART...", "DODGING SEC...", "PUMPING STOCK...", "MEME PRINTED."];
-
-  useEffect(() => {
-    let interval: any;
-    if (isGenerating) {
-      interval = setInterval(() => setLoadingStage((prev) => (prev + 1) % stages.length), 1500);
-    } else {
-      setLoadingStage(0);
-    }
-    return () => clearInterval(interval);
-  }, [isGenerating]);
-
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setUploadedImageSrc(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const clearUpload = () => {
-    setUploadedImageSrc(null);
-    if (fileInputRef.current) fileInputRef.current.value = '';
-  };
-
-  const generateMeme = async () => {
-    if (!prompt.trim() || isGenerating) return;
-    setIsGenerating(true);
-    setErrorMessage(null);
-    
-    try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      
-      let base64Data: string | null = null;
-      let mimeType = 'image/jpeg';
-
-      if (uploadedImageSrc) {
-        const parts = uploadedImageSrc.split(',');
-        mimeType = parts[0].match(/:(.*?);/)?.[1] || 'image/jpeg';
-        base64Data = parts[1];
-      }
-
-      const preset = stylePresets.find(p => p.id === selectedPreset);
-      let fullPrompt = "";
-
-      if (base64Data) {
-         // Használd a feltöltött képet referenciaként
-         fullPrompt = `Create a high-quality, funny meme image. 
-         Style: ${preset?.prompt}.
-         Context: ${prompt}.
-         Use the provided image as the visual reference for the main character or composition.
-         Make it look like a viral crypto meme.`;
-      } else {
-         // SAFER PROMPT STRATEGY: 
-         // Avoid explicit "Elon Musk" name to prevent Identity safety blocks. 
-         // Use descriptions that yield the same result in a parody context.
-         fullPrompt = `Create a high-quality, funny meme image. 
-         Subject: A satirical 3D cartoon character of a famous tech billionaire CEO dealing with stocks (parody).
-         Context: ${prompt}.
-         Style: ${preset?.prompt}.
-         Make it look like a viral crypto meme.`;
-      }
-
-      const parts: any[] = [];
-      if (base64Data) {
-         parts.push({ inlineData: { data: base64Data, mimeType: mimeType } });
-      }
-      parts.push({ text: fullPrompt });
-
-      const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash-image',
-        contents: {
-          parts: parts
-        },
-        config: { 
-            imageConfig: { aspectRatio: "1:1" },
-            safetySettings: [
-                { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_ONLY_HIGH' },
-                { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_ONLY_HIGH' },
-                { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_ONLY_HIGH' },
-                { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_ONLY_HIGH' }
-            ]
-        }
-      });
-
-      let foundImage = false;
-      let textResponse = "";
-
-      if (response.candidates && response.candidates[0] && response.candidates[0].content && response.candidates[0].content.parts) {
-        for (const part of response.candidates[0].content.parts) {
-          if (part.inlineData) {
-            setActiveImage(`data:image/png;base64,${part.inlineData.data}`);
-            foundImage = true;
-            break;
-          } else if (part.text) {
-             textResponse += part.text;
-          }
-        }
-      }
-      
-      if (!foundImage) {
-        console.warn("Model returned text instead of image:", textResponse);
-        const finishReason = response.candidates?.[0]?.finishReason;
-        let msg = textResponse ? `AI Message: ${textResponse.slice(0, 100)}...` : "AI did not return an image.";
-        if (finishReason) msg += ` (Reason: ${finishReason})`;
-        throw new Error(msg + " Try a different prompt.");
-      }
-
-    } catch (e: any) { 
-      console.error("Meme Gen Error:", e);
-      setErrorMessage(e.message || "Failed to generate meme. Please try again.");
-    } finally { 
-      setIsGenerating(false); 
-    }
-  };
-
-  return (
-    <section id="ai" className="py-24 md:py-40 px-6 bg-white/[0.02]">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row gap-12 md:gap-20 items-start">
-          <div className="lg:w-1/3 w-full space-y-8">
-            <div>
-              <h2 className="text-5xl md:text-7xl font-marker text-white mb-4 uppercase transform -rotate-1">MEME GEN</h2>
-              <p className="text-white/40 font-hand text-xl uppercase">Create Viral Content</p>
-            </div>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <label className="font-marker text-sm text-white/50 uppercase">SCENARIO</label>
-                <button onClick={() => setPrompt(randomScenarios[Math.floor(Math.random() * randomScenarios.length)])} className="text-sm font-hand font-bold text-white/80 hover:text-white transition-colors uppercase underline">STOCK IDEA</button>
-              </div>
-              <textarea 
-                value={prompt} 
-                onChange={(e) => setPrompt(e.target.value)} 
-                placeholder="Elon driving a green candle to the moon..." 
-                className="w-full h-32 bg-black/40 border-2 border-white/10 rounded-2xl p-5 text-white font-hand text-lg outline-none focus:border-white/40 transition-all resize-none placeholder:text-white/20" 
-              />
-            </div>
-            <div className="space-y-4">
-              <label className="font-marker text-sm text-white/50 uppercase">STYLE</label>
-              <div className="flex flex-wrap gap-2">
-                {stylePresets.map(p => (
-                  <button key={p.id} onClick={() => setSelectedPreset(p.id)} className={`px-4 py-2 rounded-xl font-hand text-sm font-bold border-2 transition-all uppercase ${selectedPreset === p.id ? 'bg-white text-black border-white rotate-1' : 'bg-transparent text-white/60 border-white/10 hover:border-white/40'}`}>{p.label}</button>
-                ))}
-              </div>
-            </div>
-
-            <div className="space-y-4">
-               <label className="font-marker text-sm text-white/50 uppercase">REFERENCE (OPTIONAL)</label>
-               <input 
-                 type="file" 
-                 accept="image/*" 
-                 ref={fileInputRef} 
-                 onChange={handleFileUpload} 
-                 className="hidden" 
-               />
-               <div className="flex items-center gap-4">
-                 <button 
-                   onClick={() => fileInputRef.current?.click()} 
-                   className="px-6 py-3 border-2 border-dashed border-white/30 rounded-xl font-hand text-white/70 hover:text-white hover:border-white hover:bg-white/5 transition-all uppercase text-sm font-bold"
-                 >
-                   {uploadedImageSrc ? 'CHANGE IMAGE' : 'UPLOAD PHOTO'}
-                 </button>
-                 {uploadedImageSrc && (
-                   <div className="relative group">
-                      <img src={uploadedImageSrc} alt="Upload Preview" className="w-12 h-12 rounded-lg object-cover border border-white/20" />
-                      <button 
-                        onClick={clearUpload}
-                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity"
-                      >
-                        ×
-                      </button>
-                   </div>
-                 )}
-               </div>
-               <p className="text-xs text-white/30 font-hand">If uploaded, AI will use your photo. If not, AI creates Elon.</p>
-            </div>
-            
-            {errorMessage && (
-              <div className="p-4 rounded-xl bg-red-500/20 border border-red-500/50 text-red-200 font-hand text-lg">
-                ⚠️ {errorMessage}
-              </div>
-            )}
-
-            <button onClick={generateMeme} disabled={isGenerating || !prompt} className="w-full btn-pigger py-5 font-marker text-xl uppercase disabled:opacity-50 disabled:cursor-not-allowed transform active:scale-95">{isGenerating ? 'COOKING...' : 'GENERATE'}</button>
-          </div>
-          
-          <div className="lg:w-2/3 w-full">
-            <div className="relative aspect-square bg-black/40 border-2 border-white/10 rounded-[3rem] overflow-hidden shadow-2xl">
-              <div className="absolute top-4 right-4 z-10 font-marker text-white/10 text-4xl pointer-events-none select-none">$ELON</div>
-              <AnimatePresence mode="wait">
-                {isGenerating ? (
-                  <motion.div key="loader" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/90 backdrop-blur-sm p-8 text-center">
-                    <div className="w-16 h-16 border-4 border-white/20 border-t-white rounded-full animate-spin mb-6" />
-                    <p className="font-marker text-xl text-white uppercase animate-pulse">{stages[loadingStage]}</p>
-                  </motion.div>
-                ) : activeImage ? (
-                  <motion.img initial={{ opacity: 0, scale: 1.05 }} animate={{ opacity: 1, scale: 1 }} key="result" src={activeImage} className="w-full h-full object-cover" alt="Generated Meme" />
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center p-10 opacity-40 text-center">
-                    <img src={LOGO_IMG} className="w-full h-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700" alt="Placeholder" />
-                    <p className="absolute bottom-10 font-hand text-2xl font-bold uppercase text-white/80 bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm">Ready to Print</p>
-                  </div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
 const ChartSection = () => {
   return (
     <section id="chart" className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-7xl font-marker mb-10 text-center uppercase text-white transform rotate-1">Live Chart</h2>
-        <div className="soft-glass p-2 md:p-4 rounded-[2rem] overflow-hidden">
-          <div className="relative w-full aspect-[4/5] xl:aspect-[100/65] overflow-hidden rounded-[1.5rem]">
-            <iframe 
-              src="https://dexscreener.com/solana/AtWgKycKTUYeEDB5C2E1Hph3RR5AJXMDsWTQgwg9TuwG?embed=1&loadChartSettings=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15"
-              className="absolute w-full h-full top-0 left-0 border-0"
-              title="DexScreener"
-            ></iframe>
+        <div className="soft-glass p-8 md:p-12 rounded-[2rem] overflow-hidden flex flex-col items-center justify-center min-h-[500px] text-center relative group">
+          
+          {/* Animated Background Glow */}
+          <div className="absolute inset-0 bg-green-500/5 blur-[100px] group-hover:bg-green-500/10 transition-colors duration-700" />
+          
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.1, 1],
+              rotate: [0, 5, -5, 0]
+            }}
+            transition={{ duration: 4, repeat: Infinity }}
+            className="relative z-10 mb-8"
+          >
+            <img src={LOGO_IMG} alt="Loading Chart" className="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-white/10 opacity-80 grayscale group-hover:grayscale-0 transition-all duration-500" />
+          </motion.div>
+          
+          <h3 className="relative z-10 text-4xl md:text-6xl font-marker text-white/90 mb-4 uppercase">Chart Available At Launch</h3>
+          <p className="relative z-10 text-xl font-hand text-white/50 max-w-lg">
+            We are preparing the rockets. Once the contract is deployed and liquidity is added, the chart will appear here.
+          </p>
+          
+          <div className="mt-8 relative z-10 p-4 border border-dashed border-white/20 rounded-xl bg-black/30">
+            <p className="font-mono text-white/40 text-sm">Waiting for CA update...</p>
           </div>
+
         </div>
       </div>
     </section>
@@ -601,12 +359,11 @@ const App: React.FC = () => {
           <About />
           <HowToBuy />
           <Tokenomics />
-          <MemeGenerator />
           <ChartSection />
         </main>
         <footer className="py-12 border-t border-white/10 text-center bg-black">
           <div className="max-w-6xl mx-auto px-6">
-            <p className="text-white/30 font-hand text-lg uppercase">$ELON 2025 • CORRECT.</p>
+            <p className="text-white/30 font-hand text-lg uppercase">$PUMPBAG 2025 • PUMP IT.</p>
           </div>
         </footer>
       </motion.div>
