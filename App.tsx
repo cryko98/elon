@@ -7,6 +7,7 @@ const LOGO_IMG = "https://wkkeyyrknmnynlcefugq.supabase.co/storage/v1/object/pub
 const BANNER_IMG = "https://wkkeyyrknmnynlcefugq.supabase.co/storage/v1/object/public/neww/banner%20-%202026-01-16T173326.533.png";
 const CA_ADDRESS = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 const COMMUNITY_URL = "https://x.com";
+const TELEGRAM_URL = "https://t.me/pumpbagportal";
 const SLOGAN = "Pump my bag";
 
 // --- KOMPONENSEK ---
@@ -163,6 +164,12 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           <a href={COMMUNITY_URL} target="_blank" className="hidden sm:inline-flex btn-pigger px-6 py-2 font-marker text-sm tracking-widest uppercase hover:bg-white hover:text-black">JOIN X</a>
           
+          <a href={TELEGRAM_URL} target="_blank" className="hidden sm:inline-flex btn-pigger w-10 h-10 items-center justify-center hover:bg-white hover:text-black">
+             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 11.944 0zm5.862 8.16l-2.07 9.757c-.156.687-.563.856-1.14.534l-3.155-2.327-1.522 1.464c-.17.17-.312.312-.64.312l.226-3.21 5.845-5.28c.254-.226-.056-.35-.393-.125L7.705 14.53l-3.113-.974c-.677-.21-.69-.677.142-1.002l12.16-4.69c.563-.21 1.056.126.89.835z"/>
+             </svg>
+          </a>
+          
           {/* Mobile Toggle */}
           <button 
             onClick={() => setIsOpen(!isOpen)} 
@@ -193,7 +200,8 @@ const Navbar = () => {
                   {item.name}
                 </a>
               ))}
-              <a href={COMMUNITY_URL} target="_blank" className="btn-pigger w-full py-4 font-marker text-xl uppercase">JOIN COMMUNITY</a>
+              <a href={COMMUNITY_URL} target="_blank" className="btn-pigger w-full py-4 font-marker text-xl uppercase">JOIN X</a>
+              <a href={TELEGRAM_URL} target="_blank" className="btn-pigger w-full py-4 font-marker text-xl uppercase">JOIN TELEGRAM</a>
             </motion.div>
           )}
         </AnimatePresence>
