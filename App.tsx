@@ -45,6 +45,35 @@ const StockBackground = () => {
         </motion.div>
       </div>
 
+      {/* Floating #5cc077 Green Glow Effects */}
+      {[...Array(8)].map((_, i) => (
+        <motion.div
+          key={`glow-${i}`}
+          className="absolute rounded-full blur-[60px] opacity-20"
+          style={{ 
+            backgroundColor: '#5cc077',
+            left: `${Math.random() * 100}%`,
+            width: `${Math.random() * 300 + 100}px`,
+            height: `${Math.random() * 300 + 100}px`,
+          }}
+          initial={{ 
+            y: "110vh",
+            scale: 0.5,
+          }}
+          animate={{ 
+            y: "-10vh", 
+            scale: [1, 1.2, 1],
+            opacity: [0, 0.25, 0],
+          }}
+          transition={{ 
+            duration: Math.random() * 15 + 20, 
+            repeat: Infinity, 
+            delay: Math.random() * 10,
+            ease: "linear"
+          }}
+        />
+      ))}
+
       {/* Floating Logo Elements */}
       {[...Array(20)].map((_, i) => (
         <motion.img
@@ -363,7 +392,7 @@ const App: React.FC = () => {
         </main>
         <footer className="py-12 border-t border-white/10 text-center bg-black">
           <div className="max-w-6xl mx-auto px-6">
-            <p className="text-white/30 font-hand text-lg uppercase">$PUMPBAG 2025 • PUMP IT.</p>
+            <p className="text-white/30 font-hand text-lg uppercase">$PUMPBAG 2026 • PUMP IT.</p>
           </div>
         </footer>
       </motion.div>
