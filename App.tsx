@@ -30,7 +30,7 @@ const StockBackground = () => {
           animate={{ x: [0, -2000] }}
           transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
         >
-           $PUMPBAG 🚀 $PUMPBAG 📈 PUMP MY BAG 🐂 $PUMPBAG 🚀 $PUMPBAG 📈 PUMP MY BAG 🐂
+           PUMP MY BAG 🚀 PUMP MY BAG 🚀 PUMP MY BAG 🚀 PUMP MY BAG 🚀 PUMP MY BAG 🚀
         </motion.div>
       </div>
 
@@ -41,7 +41,7 @@ const StockBackground = () => {
           animate={{ x: [-2000, 0] }}
           transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
         >
-           FILL YOUR BAGS CORRECT CORRECT PUMP.FUN CORRECT CORRECT
+           PUMP MY BAG PUMP MY BAG PUMP MY BAG PUMP MY BAG PUMP MY BAG
         </motion.div>
       </div>
 
