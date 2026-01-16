@@ -5,7 +5,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 // --- KONSTANSOK ---
 const LOGO_IMG = "https://wkkeyyrknmnynlcefugq.supabase.co/storage/v1/object/public/neww/logo%20-%202026-01-16T171903.386.png";
 const BANNER_IMG = "https://wkkeyyrknmnynlcefugq.supabase.co/storage/v1/object/public/neww/banner%20-%202026-01-16T173326.533.png";
-const CA_ADDRESS = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+const CA_ADDRESS = "8Dp7vCpZkHrfWKJ4pEXTcra9MuT2bbDPHUMrfgXbpump";
 const COMMUNITY_URL = "https://twitter.com/i/communities/2012204600288288867";
 const TELEGRAM_URL = "https://t.me/pumpbagportal";
 const SLOGAN = "Pump my bag";
@@ -354,31 +354,12 @@ const ChartSection = () => {
     <section id="chart" className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-7xl font-marker mb-10 text-center uppercase text-white transform rotate-1">Live Chart</h2>
-        <div className="soft-glass p-8 md:p-12 rounded-[2rem] overflow-hidden flex flex-col items-center justify-center min-h-[500px] text-center relative group">
-          
-          {/* Animated Background Glow */}
-          <div className="absolute inset-0 bg-green-500/5 blur-[100px] group-hover:bg-green-500/10 transition-colors duration-700" />
-          
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.1, 1],
-              rotate: [0, 5, -5, 0]
-            }}
-            transition={{ duration: 4, repeat: Infinity }}
-            className="relative z-10 mb-8"
-          >
-            <img src={LOGO_IMG} alt="Loading Chart" className="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-white/10 opacity-80 grayscale group-hover:grayscale-0 transition-all duration-500" />
-          </motion.div>
-          
-          <h3 className="relative z-10 text-4xl md:text-6xl font-marker text-white/90 mb-4 uppercase">Chart Available At Launch</h3>
-          <p className="relative z-10 text-xl font-hand text-white/50 max-w-lg">
-            We are preparing the rockets. Once the contract is deployed and liquidity is added, the chart will appear here.
-          </p>
-          
-          <div className="mt-8 relative z-10 p-4 border border-dashed border-white/20 rounded-xl bg-black/30">
-            <p className="font-mono text-white/40 text-sm">Waiting for CA update...</p>
-          </div>
-
+        <div className="soft-glass p-4 md:p-6 rounded-[2rem] overflow-hidden h-[600px] relative group border border-white/20">
+             <iframe 
+                src={`https://dexscreener.com/solana/${CA_ADDRESS}?embed=1&theme=dark&trades=0&info=0`}
+                title="DexScreener Chart"
+                className="w-full h-full border-0 rounded-xl"
+            ></iframe>
         </div>
       </div>
     </section>
