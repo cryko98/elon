@@ -6,7 +6,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 const LOGO_IMG = "https://wkkeyyrknmnynlcefugq.supabase.co/storage/v1/object/public/neww/logo%20-%202026-01-16T171903.386.png";
 const BANNER_IMG = "https://wkkeyyrknmnynlcefugq.supabase.co/storage/v1/object/public/neww/banner%20-%202026-01-16T173326.533.png";
 const CA_ADDRESS = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-const COMMUNITY_URL = "https://x.com";
+const COMMUNITY_URL = "https://twitter.com/i/communities/2012204600288288867";
 const TELEGRAM_URL = "https://t.me/pumpbagportal";
 const SLOGAN = "Pump my bag";
 
